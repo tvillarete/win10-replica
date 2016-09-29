@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+        <link rel="stylesheet" href="jquery-ui.min.css">
+        <script src="external/jquery/jquery.js"></script>
+        <script src="jquery-ui.min.js"></script>
+        <link rel="stylesheet"  href="index.css">
+        <title>Desktop</title>
+    </head>
+    <body onload="startup()">
+        <div class="loadingScreen">
+            <div class="windowsLogo" id="winLoader">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="windows8">
+                <div class="wBall" id="wBall_1">
+                    <div class="wInnerBall">
+                    </div>
+                </div>
+                <div class="wBall" id="wBall_2">
+                    <div class="wInnerBall">
+                    </div>
+                </div>
+                <div class="wBall" id="wBall_3">
+                    <div class="wInnerBall">
+                    </div>
+                </div>
+                <div class="wBall" id="wBall_4">
+                    <div class="wInnerBall">
+                    </div>
+                </div>
+                <div class="wBall" id="wBall_5">
+                    <div class="wInnerBall">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="taskbar">
+            <div class="startButton">
+                <img draggable="false" src="images/windows.png">
+            </div>
+            <script>
+
+            </script>
+            <div class="searchbar">
+                <p>Ask me anything</p>
+            </div>
+            <div class="taskbarIcon" id="1icon">
+                <img src='images/explorer.png'>
+            </div>
+            <div class="taskbarIcon" id="2icon">
+                <img src='images/edge.png'>
+            </div>
+            <div class="taskbarIcon" id="3icon">
+                <img src='images/settings.png'>
+            </div>
+            <div class="taskbarIcon" id="4icon">
+                <img src='images/power.png'>
+            </div>
+            <div class="taskbarIcon" id="5icon">
+                <img src='images/desktop.png'>
+            </div>
+            <div class="taskbarIcon" id="6icon">
+                <img src='images/spotify.png'>
+            </div>
+            <div class="taskbarRight">
+                <div class="taskbarRightIcon" id="clock">
+                    <div id="time">
+                        <div id="hour"></div>
+                        <div id="min"></div>
+                        <div id="ampm"></div>
+                    </div>
+                    <div id="date">
+                        <div id="month"></div>
+                        <div id="day"></div>
+                        <div id="year"></div>
+                    </div>
+                </div>
+                <script>
+                    var month = new Date().getMonth();
+                    month+=1;
+                    var day = new Date().getDay();
+                    day+=25;
+                    var year = new Date().getFullYear();
+                    var minutes = new Date().getMinutes();
+                    var hours = new Date().getHours();
+                    var ampm = " AM";
+                    if (hours > 12){
+                        hours-=12;
+                        ampm="PM";
+                    }
+                    
+                    $("#hour").append("<p>"+hours+":</p>");
+                    if (minutes < 10){
+                        $("#min").append("<p>0"+minutes+"</p>");
+                    }
+                    else{
+                        $("#min").append("<p>"+minutes+"</p>");
+                    }
+                    $("#ampm").append("<p>"+ampm+"</p>");
+                    $("#month").append("<p>"+month+"</p>");
+                    $("#day").append("<p>/"+day+"</p>");
+                    $("#year").append("<p>/"+year+"</p>");
+                    $(document).ready(function() {
+                        var refreshId = setInterval(function(){
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="cortanaMenu">
+            <div class="cortanaSidebar">
+                <div class="cortanaSidebarButton" id="1csb">
+                    <img src="images/menu.png">
+                </div>
+            </div>
+            <div class="cortanaMain">
+                <div class="cortanaAnimation"></div>
+                <h3>Just kidding,</h3>
+                <h3>I'm useless!</h3>
+            </div>
+        </div>
+        <div class="startMenu">
+            <div class="sidebar">
+                <div class="sidebarTop">
+                    <div class="sidebarButton" id="3profile">
+                        <img src="images/profile.png">
+                    <p>Add Profile</p>
+                </div>
+                </div>
+                <div class="sidebarBottom">
+                    <div class="sidebarButton" id="1sidebar">
+                        <img src="images/fileExplorer.png">
+                        <p>File Explorer</p>
+                    </div>
+                    <div class="sidebarButton" id="3sidebar">
+                        <img src="images/settings.png">
+                        <p>Settings</p>
+                    </div>
+                    <div class="sidebarButton" id="4sidebar">
+                        <img src="images/power.png">
+                        <p>Power</p>
+                    </div>
+<!--
+                    <div class="sidebarButton" id="sidebar">
+                        <img src="images/allApps.png">
+                        <p>All Apps</p>
+                    </div>
+-->
+                </div>
+                     
+                     
+            </div>
+            <div class="appview">
+                <div class="appSection">
+                    <p>Main</p>
+                    <div class="appHolder">
+                        <li class="app" id="1start">
+                            <img src="images/explorer.png">
+                            <p>Explorer</p>
+                        </li>
+                        <li class="app" id="2start" style="background:purple">
+                            <img src="images/edge.png">
+                            <p>Edge</p>
+                        </li>
+                        <li class="app" id="3start">
+                            <img src="images/settings.png">
+                            <p>Settings</p>
+                        </li>
+                        <li class="app" id="6start">
+                            <img src="images/spotify.png">
+                            <p>Spotify</p>
+                        </li>
+                        <li class="app" id="7start">
+                            <h3>>_</h3>
+                            <p>Terminal</p>
+                        </li>
+                    </div>
+                </div>
+                <div class="appSection">
+                    <p>General</p>
+                    <div class="appHolder">
+                        <li class="app">Test</li>
+                        <li class="app">Apps</li>
+                        <li class="app">Ignore</li>
+                        <li class="wideapp"></li>
+                        <li class="app"></li>
+                        <li class="app"></li>
+                        <li class="wideapp"></li>
+                        <li class="app">Drag</li>
+                        <li class="app">Us</li>
+                        <li class="app">Around!</li>
+                    </div>
+                </div>
+<!--
+                <div class="appSection">
+                    <p>Apps</p>
+                    <div class="appHolder">
+                        <div class="app">
+                            <p></p>
+                        </div>
+                        <div class="app"></div>
+                        <div class="app"></div>
+                        <div class="app"></div>
+                        <div class="app"></div>
+                        <div class="app"></div>
+                        <div class="app"></div>
+                    </div>
+                </div>
+-->
+            </div>
+        </div>
+        <div class="desktop">
+            <div class="shortcutShell">
+                <div class="shortcut" id="2shortcut">
+                    <img src="images/edge.png">
+                    <p>Edge</p>
+                </div>
+                <div class="shortcut" id="3shortcut">
+                    <img src="images/settings.png">
+                    <p>Settings</p>
+                </div>
+            </div>
+            <div class="appShell" id="1app">
+                    <div class="titleBar">
+                        <p>File Explorer</p>
+                        <div class="windowNav">
+                            <div class="navButton" id="1close"><div></div></div>
+                            <div class="navButton2" id="1size"><div></div></div>
+                            <div class="navButton3" id="1close"><img src="images/close.png"></div>
+                        </div>
+                    </div>
+                    <div class="appContent">
+                        <div class="explorerNav-tab">
+                            <div>
+                                File
+                            </div>
+                            <div>
+                                Home
+                            </div>
+                            <div>
+                                Share
+                            </div>
+                            <div>
+                                View
+                            </div>
+                        </div>
+                        <div class="explorerNav">
+<!--
+                            <div class="explorerNav-button">
+                                Left
+                            </div>
+-->
+                            <img class="explorerNav-button" src="images/arrow.png">
+                            <img class="explorerNav-button" src="images/arrow.png">
+                            <img class="explorerNav-button" src="images/downArrow.png">
+                            <img class="explorerNav-button" src="images/arrow.png">
+
+                            <div class="explorerNav-button">
+                                Quick Access
+                            </div>
+                            <div class="explorerNav-button">
+                                Search
+                            </div>
+                        </div>
+                        <div class="explorerPane">
+                            <div class="explorerSidebar">
+                                <ul>
+                                        <p>Quick Access</p>
+                                </ul>
+                                <ul>
+                                    <p>Windows (C:)</p>
+                                </ul>
+                                <ul>
+                                    <p>Desktop</p>
+                                </ul>
+                                <ul>
+                                    <p>Documents</p>
+                                </ul>
+                                <ul>
+                                    <p>Downloads</p>
+                                </ul>
+                                <ul>
+                                    <p>Music</p>
+                                </ul>
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="appShell" id="2app">
+                <div class="titleBar">
+                    <p>Edge Browser</p>
+                    <div class="windowNav">
+                        <div class="navButton" id="2close"><div></div></div>
+                        <div class="navButton2" id="2size"><div></div></div>
+                        <div class="navButton3" id="2close"><img src="images/close.png"></div>
+                    </div>
+                </div>
+                <div class="appContent">
+                    <div class="edgeNavBar">
+                        <div class="backArrow"></div>
+                        <h6>Note: Some websites won't work</h6>
+                        <input class="edgeSearch" type="text" action="javascript" placeholder="Enter an address">
+                    </div>
+                    <div class="edgeContent">
+                        <iframe src="http://www.bing.com"></iframe>
+                    </div>
+                </div>
+                <script>
+                    $(".edgeSearch").change(function(){
+                        var website = $(".edgeSearch").val();
+                        $(".edgeContent iframe").remove();
+                        $(".edgeContent").html("<iframe src="+website+"></iframe>");
+                    })
+                </script>
+            </div>
+             <div class="appShell" id="3app">
+                 <div class="titleBar">
+                     <img class="backArrow" src="images/arrow.png">
+                     <p>Settings</p>
+                     <div class="windowNav">
+                         <div class="navButton" id="3close"><div></div></div>
+                         <div class="navButton2" id="3size"><div></div></div>
+                         <div class="navButton3" id="3close"><img src="images/close.png"></div>
+                     </div>
+                 </div>
+                 <div class="appContent">
+                     <div class="settingsPane">
+                         <h3>Windows Settings</h3>
+                         <ol class="settingsPaneSelector">
+                             <div class="settingsPaneSection" id="1settings">
+                                 <img src="images/laptop.png">
+                                <p>System</p>
+                             </div>
+                             <div class="settingsPaneSection" id="2settings">
+                                 <img src="images/devices.png">
+                                <p>Devices</p>
+                             </div>
+                             <div class="settingsPaneSection" id="3settings">
+                                 <img src="images/internet.png">
+                                <p>Internet</p>
+                             </div>
+                             <div class="settingsPaneSection" id="4settings">
+                                 <img src="images/personalization.png">
+                                <p>Personalization</p> 
+                             </div>
+                             <div class="settingsPaneSection" id="5settings">
+                                 <img src="images/accounts.png">
+                                <p>Accounts</p>
+                             </div>
+                             <div class="settingsPaneSection" id="6settings">
+                                 <img src="images/time.png">
+                                <p>Time</p>
+                             </div>
+                             <div class="settingsPaneSection" id="7settings">
+                                 <img src="images/privacy.png">
+                                Privacy
+                             </div>
+                             <div class="settingsPaneSection" id="8settings">
+                                 <img src="images/update.png">
+                                <p>Update and Security</p>
+                             </div>
+<!--
+                             <h3>Personalization</h3>
+                             <ul>Choose a Background</ul>
+                             <div class="settingsSection" id="settingsSection1">
+                                 <div class="wallpaper" id="1wallpaper">
+                                    <img src="images/backgroundIcon1.jpg">
+                                 </div>
+                                 <div class="wallpaper" id="2wallpaper">
+                                    <img src="images/backgroundIcon2.jpg">
+                                 </div>
+                                 <div class="wallpaper" id="3wallpaper">
+                                    <img src="images/backgroundIcon3.jpg">
+                                 </div>
+                                 <div class="wallpaper" id="4wallpaper">
+                                    <img src="images/backgroundIcon4.jpg">
+                                 </div>
+                                 <div class="customWallpaper">
+                                    <img src="images/upload.ico">
+                                 </div>
+                             </div>
+                             <ul>Choose a Color Scheme</ul>
+                             <div class="settingsSection">
+                             <h3>Accounts</h3>
+                             <div class="settingsSection" id="settingsSection3">
+                                <ul>Enter a name/social security number (optional) and add a picture to connect you to all that Windows has to offer.</ul>
+                                 <div id="accountInfo">
+                                     <div>
+                                         <input class="input" id="accountName" type="text" placeholder="First/Last Name">
+                                         <input class="input" id="accountPicture" type="text" placeholder="Profile Picture URL">
+                                         <input class="input" if="accountOther" type="text" placeholder="Social Security Number (Optional)">
+                                     </div>
+                                     <div class="profilePicture">
+                                         <img id="profilePicture" src="images/profile.png">
+                                         <div id="sampleProfile"></div>
+                                         <p id="sampleName">First Last</p>
+                                     </div>
+                                 </div>
+                             </div>
+                             <h3>About</h3>
+                             <div class="settingsSection" id="settingsSection4">
+                                 <ol>
+                                    <h3>Designed by Tanner Villarete</h3>
+                                     <p>Just another weekend project. Why not test my HTML skills by making a full-fledged (sorta) desktop environment? Completely pointless, but tons of fun to see come together.</p>
+                                     <a href="http://users.csc.calpoly.edu/~tvillare">Visit my website here</a>
+                                 </ol>
+                             </div>
+-->
+                         </ol>
+                         <div class="settingsSection" id="settingsPane-4">
+                             <div class="settingsPane-4-Sidebar">
+                                <p>Personalization</p>
+                                 <div class="settingsPane-4-Sidebar-Options">
+                                    <p id="1settingsPaneSidebar">Background</p>
+                                     <p id="2settingsPaneSidebar">Colors</p>
+                                     <p id="3settingsPaneSidebar">Lock Screen</p>
+                                     <p id="4settingsPaneSidebar">Themes</p>
+                                     <p id="5settingsPaneSidebar">Start</p>
+                                     <p id="6settingsPaneSidebar">Taskbar</p>
+                                 </div>
+                             </div>
+                             <div class="settingsPane-4-Main">
+                                 <p>Preview</p>
+                                 <div class="preview">
+                                     <div class="previewStart">
+                                         <div class="previewApp">
+                                            <p>Aa</p>
+                                         </div>
+                                         <div id="previewApp2-hold">
+                                            <div class="previewApp2"></div>
+                                            <div class="previewApp2"></div>
+                                         </div>
+                                         <div class="previewApp2"></div>
+                                         <div class="previewApp2"></div>
+                                         <div class="previewApp2"></div>
+                                         <div class="previewApp2"></div>
+                                         <div class="previewApp2"></div>
+                                         <div class="previewApp2"></div>
+                                         <div class="previewApp2"></div>
+                                         <div class="previewApp2"></div>
+                                         <div class="previewApp2"></div>
+                                     </div>
+                                     <div class="previewTaskbar">
+
+                                     </div>
+                                     <div class="previewWindow">
+
+                                     </div>
+                                 </div>
+                                 <div class="settingsPane-4-Main-Group" id="settingsPane-4-1">
+                                     <p>Background</p>
+                                     <div>
+
+                                     </div>
+                                     <p>Choose your picture</p>
+                                     <div class="WPChooser">
+                                         <div>
+                                             <div class="wallpaper" id="1wallpaper">
+                                                 <img src="images/backgroundIcon1.jpg">
+                                             </div>
+                                             <div class="wallpaper" id="2wallpaper">
+                                                 <img src="images/backgroundIcon2.jpg">
+                                             </div>
+                                             <div class="wallpaper" id="3wallpaper">
+                                                 <img src="images/backgroundIcon3.jpg">
+                                             </div>
+                                             <div class="wallpaper" id="4wallpaper">
+                                                 <img src="images/backgroundIcon4.jpg">
+                                             </div>
+                                             </div>
+                                         <div class="customWallpaper">
+                                             <p>Browse</p>
+                                         </div>
+                                     </div>
+                                     
+                                 </div>
+                                 <div class="settingsPane-4-Main-Group" id="settingsPane-4-2">
+                                     <p>Accent color</p>
+                                     <div class="colorSelector" id="settingsSection2">
+                                         <div class="color" name="dodgerblue" style="background:dodgerblue"></div>
+                                         <div class="color" name="red" style="background:red"></div>
+                                         <div class="color" name="green" style="background:green"></div>
+                                         <div class="color" name="purple" style="background:purple"></div>
+                                         <div class="color" name="indigo" style="background:indigo"></div>
+                                         <div class="color" name="none" style="background:white; border:.2em solid black; box-sizing:border-box"></div>
+                                     </div>
+                                 </div>
+                                 <script>
+                                     $(".settingsPane-4-Main-Group").hide();
+                                     $(".settingsPane-4-Sidebar-Options p").click(function(){
+                                         panel = parseInt($(this).attr("id"));
+                                         $()
+                                         $(".settingsPane-4-Main-Group").hide();
+                                         $("#settingsPane-4-"+panel).show();
+                                     });
+                                 </script>
+                                 
+                                 <div class="settingsPane-4-Main-Group" id="settingsPane-4-3">
+                                     <p>No Lock Screen settings yet</p>
+                                 </div>
+                                 <div class="settingsPane-4-Main-Group" id="settingsPane-4-4">
+                                     <p>No Theme settings yet</p>
+                                 </div>
+                                 <div class="settingsPane-4-Main-Group" id="settingsPane-4-5">
+                                     <p>No Start Menu settings yet</p>
+                                 </div>
+                                 <div class="settingsPane-4-Main-Group" id="settingsPane-4-6">
+                                     <p>No Taskbar settings yet</p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <script>
+                         for (i=0; i<9; i++){
+                             $(".backArrow, #settingsPane-"+i).hide();
+                         }
+                         $(".settingsPaneSection").click(function(){
+                             panel = parseInt($(this).attr("id"));
+//                             if (this.attr("class") == "settingsPaneSection"){
+                                 $(".settingsPaneSelector, .settingsPane h3").hide();
+                                 $(".backArrow, #settingsPane-"+panel).show();
+//                             }
+//                             else{
+//                                 $(".settingsPane-4-Main-Group").hide();
+//                                 $("#settingsPane-4-"+panel).show();
+//                             }
+                         });
+                         $(".backArrow").click(function(){
+                             for (i=0; i<9; i++){
+                                 $(".backArrow, #settingsPane-"+i).hide();
+                                 $(".settingsPaneSelector, .settingsPane h3").show();
+                             }
+                         });
+                     </script>
+                 </div>
+            </div>
+            <div class="popupShell" id="4app">
+                <div class="titleBar">
+                     <p>Power</p>
+                     <div class="windowNav">
+                         <div class="navButton" id="4close"><div></div></div>
+                         <div class="navButton2" id="4size"><div></div></div>
+                         <div class="navButton3" id="4close"><img src="images/close.png"></div>
+                    </div>
+                </div>
+                 <div class="popupMainContent">
+                     <h3>I'd suggest pressing the "close" button on your browser.</h3>
+                     <div class="notificationButtonContainer">
+                         <div class="notificationButton" id="4notif" >Cancel</div>
+                         <div class="notificationButton" id="4restart">Restart</div>
+                     </div>
+                     <script>
+                        $("#4restart").click(function(){
+                            location.reload();
+                        })
+                     </script>
+                </div>
+            </div>
+            <div class="popupShell" id="5app">
+                <div class="titleBar">
+                     <p>Custom Wallpaper</p>
+                     <div class="windowNav">
+                         <div class="navButton" id="5close"><div></div></div>
+                         <div class="navButton2" id="5size"><div></div></div>
+                         <div class="navButton3" id="5close"><img src="images/close.png"></div>
+                    </div>
+                </div>
+                 <div class="popupMainContent">
+                     <h3>Enter an image URL (Don't press enter) and hit done.</h3>
+                     <form>
+                        <input class="input" id="wpform" type="text">
+                     </form>
+                     <div class="notificationButtonContainer">
+                         <div class="notificationButton" id="5notif" >Cancel</div>
+                         <div class="notificationButton" id="5notif">Done</div>
+                     </div>
+                </div>
+            </div>
+            <div class="appShell" id="6app">
+                <div class="titleBar">
+                    <p>Spotify</p>
+                    <div class="windowNav">
+                        <div class="navButton" id="6close"><div></div></div>
+                        <div class="navButton2" id="6size"><div></div></div>
+                        <div class="navButton3" id="6close"><img src="images/close.png"></div>
+                    </div>
+                </div>
+                <div class="appContent">
+                    <h3 style="font-weight:100; text-align:center; background:rgb(50,50,50); line-height:3em; height:3em; margin: 0; color:white;">Tanner's Cool Time Summer Jamz Playlist</h3>
+                    <iframe src="https://embed.spotify.com/?uri=spotify:user:1230292382:playlist:3qUaENDx61gReGolqmOvA9" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+                </div>
+            </div>
+            <div class="appShell" id="7app">
+                <div class="titleBar">
+                    <p>Command Prompt</p>
+                    <div class="windowNav">
+                        <div class="navButton" id="7close"><div></div></div>
+                        <div class="navButton2" id="7size"><div></div></div>
+                        <div class="navButton3" id="7close"><img src="images/close.png"></div>
+                    </div>
+                </div>
+                <div class="appContent">
+                    <iframe src="http://www.htmlfivewow.com/demos/terminal/terminal.html"></iframe>
+                </div>
+            </div>
+        </div>
+            
+        <script>
+            function bringToTop(appnumber){
+                var boxes = $(".appShell, .popupShell");
+
+                // Set up click handlers for each box
+                boxes.click(function() {
+                    var el = $(this), // The box that was clicked
+                        max = 0;
+
+                    // Find the highest z-index
+                    boxes.each(function() {
+                        // Find the current z-index value
+                        var z = parseInt( $( this ).css( "z-index" ), 10 );
+                        // Keep either the current max, or the current z-index, whichever is higher
+                        max = Math.max( max, z );
+                    });
+
+                    // Set the box that was clicked to the highest z-index plus one
+                    el.css("z-index", max + 1 );
+                });
+            }
+            
+            
+            
+            $(".appShell, .popupShell").draggable();
+            $(".appHolder, .shortcutShell, .taskbarIcon").sortable();
+//            $(".shortcutShell").selectable();
+            $( ".appShell" ).resizable({
+                minWidth:300,
+                minHeight:300,
+            });
+            $( ".startMenu" ).resizable({
+                minWidth:600
+            });
+            $(document).ready(function(){
+                $(".startMenu, .cortanaMenu").hide();
+                $(".startMenu, .cortanaMenu").addClass("startHide");
+            })
+            $(".startButton").click(function(){
+                $(".startMenu").toggleClass("startHide");
+                $(".startMenu").fadeToggle("fast");
+                $(".cortanaMenu").fadeOut();
+            });
+            $(".appShell, .shortcutShell").click(function(){
+                $(".startMenu, .cortanaMenu").addClass("startHide");
+                $(".startMenu, .cortanaMenu").fadeOut();
+//                bringToTop(parseInt($(this).attr("id")));
+            })
+            $(".taskbarIcon, .navButton").click(function(){
+                taskbar = parseInt($(this).attr("id"));
+                if ($(this).hasClass(".taskbarIcon")){
+                    $(this).toggleClass("activeIcon");
+                }
+                else{
+                    $("#"+taskbar+"icon").toggleClass("activeIcon");
+                }
+                $('#'+taskbar+'app').fadeToggle();
+                $('.startMenu').addClass("startHide");
+                $('.startMenu').fadeOut();
+                bringToTop(taskbar);
+            })
+            $(".searchbar").click(function(){
+                $(".cortanaMenu").toggleClass("startHide");
+                $(".cortanaMenu").fadeToggle("fast");
+                $(".startMenu").addClass("startHide");
+                $(".startMenu").fadeOut("fast");
+            })
+            $(".app, .sidebarButton, .shortcut").click(function(){
+                app = parseInt($(this).attr("id"));
+                if (app != 1){
+                    if (!$("#"+app+"icon").hasClass("activeIcon")){
+                        $('#'+app+'app').fadeToggle("fast");
+                        $('#'+app+'app').css("z-index", 15);
+                        $('#'+app+'icon').fadeToggle("fast");
+                        $('#'+app+'icon').toggleClass("activeIcon");
+                    }
+                    $('.startMenu').addClass("startHide");
+                    $('.startMenu').fadeOut("fast");
+                    bringToTop(parseInt($(this).attr("id")));
+                }
+                else{
+                    if (!$("#"+app+"icon").hasClass("activeIcon")){
+                        $('#'+app+'app').fadeToggle("fast");
+                        $('#'+app+'icon').toggleClass("activeIcon");
+                    }
+                    $('.startMenu').addClass("startHide");
+                    $('.startMenu').fadeOut("fast");
+                    bringToTop(parseInt($(this).attr("id")));
+                }
+            })
+//            $(".shortcut").click(function(){
+//                shortcut = parseInt($(this).attr("id"));
+//                $('#'+shortcut+'app').fadeToggle();
+//                $('#'+shortcut+'icon').toggleClass("activeIcon");
+//                bringToTop(shortcut);
+//            })
+            $(".navButton2").click(function(){
+                size = parseInt($(this).attr("id"));
+                $('#'+size+'app').toggleClass("smallWindow");
+                $(".appShell").css({
+                    'left': $(".appShell").data('originalLeft'),
+                    'top': $(".appShell").data('origionalTop')
+                });
+            })
+            $(".navButton3, .notificationButton").click(function(){
+                close = parseInt($(this).attr("id"));
+                if (close != 1){
+                    $('#'+close+'app').fadeToggle("fast");
+                    $('#'+close+'icon').toggleClass("activeIcon");
+                    $('#'+close+'icon').fadeToggle();
+                }
+                else{
+                    $('#'+close+'app').fadeToggle("fast");
+                    $('#'+close+'icon').toggleClass("activeIcon");
+                }
+            })
+//            $(".sidebarButton").click(function(){
+//                sidebar = parseInt($(this).attr("id"));
+//                if (sidebar != 1){
+//                    $('#'+sidebar+'app').fadeToggle();
+//                    $('.startMenu').addClass("startHide");
+//                    $('.startMenu').fadeOut();
+//                    bringToTop(sidebar);
+//                }
+//                else{
+//                    $('#'+sidebar+'app').fadeToggle();
+//                    $('.startMenu').addClass("startHide");
+//                    $('.startMenu').fadeOut();
+//                    bringToTop(sidebar);
+//                }
+//            })
+
+            //SETTINGS
+            $(".wallpaper").click(function(){
+                wallpaper = parseInt($(this).attr("id"));
+                $("body, .preview").css("background-image", "url(images/background"+wallpaper+".jpg)");  
+                localStorage.setItem("customBackground","no");
+                localStorage.setItem("backgroundID",wallpaper);
+            })
+            $(".customWallpaper").click(function(){
+//                    var custom = window.prompt("Please enter a picture URL");
+                $("#5app").fadeToggle();
+                $("#5app").trigger("click");
+                $("#5icon").fadeToggle();
+                $('#5icon').toggleClass("activeIcon");
+                bringToTop(5);
+            })
+            $( "#wpform" )
+                .keyup(function() {
+                var wpurl = $( this ).val();
+                $("body").css("background-image", "url("+wpurl+")");  
+                localStorage.setItem("customBackground",wpurl);
+            })
+            $(".color").click(function(){
+                color = $(this).attr("name");
+                if(color == "none"){
+                    $(".colorScheme, .previewApp, .previewApp2").css("background-color","dodgerblue");
+                    localStorage.setItem("getColor","no");
+                    $(".app, .wideapp").removeClass("colorScheme");
+                }
+                else{
+                    $('.app, .wideapp').addClass("colorScheme");
+                    $(".colorScheme, .previewApp, .previewApp2").css("background-color",color);
+                    localStorage.setItem("getColor",color);
+                }
+            })
+            $( "#accountName" )
+                .keyup(function() {
+                var accountName = $( this ).val();
+                $("#sampleName").text(accountName);
+                localStorage.setItem("accountName",accountName);
+            })
+            $( "#accountPicture" )
+                .keyup(function() {
+                var accountPicture = $( this ).val();
+                $("#profilePicture").remove();
+                $("#sampleProfile").show();
+                $("#sampleProfile").css("background-image", "url("+accountPicture+")");
+                localStorage.setItem("accountName",accountPicture);
+            })
+
+            //ONLOAD
+            function startup(){
+                getColor();
+                getBackground();
+                getIcons();
+            }
+            function getColor(){
+                var getColor = localStorage.getItem("getColor")
+                if (getColor!="no"){
+                    $('.app, .wideapp').addClass("colorScheme");
+                    $(".colorScheme").css("background-color",getColor);
+                }
+            }    
+            function getBackground(){
+                var backgroundID = localStorage.getItem("backgroundID");
+                var customBackground = localStorage.getItem("customBackground");
+                if (getBackground || customBackground){
+                    if(customBackground=="no"){
+                        $("body").css("background-image", "url(images/background"+backgroundID+".jpg)");  
+                    }
+                    else if(customBackground && customBackground!="no"){
+                        $("body").css("background-image", "url("+customBackground+")");
+                    }
+                    else{
+                        $("body").css("background-image", "url(images/background1.jpg)"); 
+                    }
+                }
+            }
+            function getIcons(){
+                $(".taskbarIcon").hide();
+                $("#1icon").show();
+            }
+
+            $(".appShell").data({
+                'originalLeft': $(".appShell").css('left'),
+                'origionalTop': $(".appShell").css('top')
+            });
+
+            $(window).load(function(){
+//                $(".loadingscreen").addClass("circleOut");
+            $(".loadingScreen").delay(0).fadeOut("slow", 0);
+        });
+        </script>
+    </body>
+</html>
