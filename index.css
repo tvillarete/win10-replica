@@ -192,7 +192,7 @@ body{
     }
 }
 .taskbar{
-    z-index: 200;
+    z-index: 300;
     position:fixed;
     flex-wrap: nowrap;
     display: flex;
@@ -201,7 +201,7 @@ body{
     bottom:0;
     left:0;
     right:0;
-    height:3.5em;
+    height:2.7em;
     width:100%;
     background:rgba(0,0,0,1);
 }
@@ -226,26 +226,27 @@ body{
     display: flex;
     flex-wrap: nowrap;
     height:100%;
-    width:15.2em;
-    line-height: 1.5em;
-    background:rgb(70,70,70);
+    width:19.2em;
+    line-height: .7em;
+    background:rgb(40,40,40);
     color:rgba(70,70,70,1);
 }
 .searchbar:hover{
-    background:rgb(100,100,100)
+    background:rgb(50,50,50)
 }
 .searchbar p{
     margin-left:1em;
     margin-right: 1em;
-    color:lightgray;
+    color:rgb(100,100,120);
 }
 .taskbarIcon{
     display: flex;
     height:100%;
-    width:3.6em;
+    width:3em;
     justify-content: center;
     color:white;
     box-sizing: border-box;
+    margin-left:.2em;
 }
 .taskbarIcon:hover{
     background-color:rgb(100,100,100);
@@ -254,11 +255,11 @@ body{
     background:black;
 }
 .taskbarIcon img{
-    height:50%;
+    height:60%;
     margin: auto;
 }
 .activeIcon{
-    border-bottom:.2em solid white;
+    border-bottom:.2em solid rgb(50,120,200);
 }
 .taskbarRight{
     position: absolute;
@@ -295,23 +296,19 @@ body{
     margin-top:.5em;
 }
 .startMenu{
-    z-index: 999;
+    z-index: 200;
     display: flex;
     flex-direction: row;
     position:fixed;
-    bottom:3.5em;
+    bottom:2.7em;
     left:0;
     height:100%;
     width:60em;
     max-height:40em;
     background:rgba(0,0,0,.8);
-    animation: startPopup .4s;
-}
-.startHide{
-    animation: startPopdown .4s;
-}
-.appHide{
-    animation: startPopdown .3s;
+    animation: .3s fade-and-slide;
+    
+/*    animation: startPopup .4s;*/
 }
 @keyframes startPopup{
     0%{
@@ -337,6 +334,7 @@ body{
     width:25em;
     padding-top:1em;
     color:white;
+    animation: .4s fade-and-slide;
 }
 .sidebarTop{
     position: relative;
@@ -376,6 +374,7 @@ body{
     height:90%;
     width:100%;
     overflow: auto;
+    animation: .4s fade-and-slide;
 }
 .appSection{
     z-index: 5;
@@ -399,10 +398,10 @@ body{
     list-style: none;
     text-align: center;
     color:white;
+    animation: .3s fade-and-slide;
 }
 .app:hover, .wideapp:hover{
-    border: .2em solid white;
-    box-sizing: border-box;
+    outline: .2em solid white;
 }
 .wideapp{
     height:6em;
@@ -412,6 +411,7 @@ body{
     list-style: none;
     background:dodgerblue;
     color:white;
+    animation: .3s fade-and-slide;
 }
 .app img, .wideapp img{
     max-height:3em;
@@ -420,20 +420,21 @@ body{
 }
 /*END START MENU*/
 .cortanaMenu{
+    z-index: 200;
     position: fixed;
     display: flex;
     left:0;
-    bottom:3.5em;
+    bottom:2.7em;
     height:100%;
-    width:18.4em;
+    width:22.4em;
     max-height:40em;
     background:rgba(0,0,0,.8);
-    animation: startPopup .5s;
+    animation: .4s fade-and-slide;
 }
 .cortanaSidebar{
     position: relative;
     height:100%;
-    width:20%;
+    width:14%;
     background: black;
 }
 .cortanaSidebarButton{
@@ -479,7 +480,7 @@ body{
 .desktop{
     position: absolute;
     overflow:none;
-    height:94%;
+    height:95.5%;
     width:100%;
     top:0;
     bottom:0;
@@ -523,7 +524,7 @@ body{
     position: absolute;
     flex-direction: column;
     height:40em;
-    width:55em;
+    width:60%;
     background:rgb(255,255,255);
     border-bottom:.1em solid white;
     border-left:.1em solid white;
@@ -532,13 +533,29 @@ body{
     overflow: hidden;
     box-shadow: 0 0 10px rgb(50,50,50);
 }
+
 @keyframes fade-and-scale{
     0%{
-/*        opacity: 0;*/
         transform: scale(.9, .9);
     }
     100%{
 
+    }
+}
+@keyframes fade-and-shrink{
+    0%{
+        opacity: 0;
+    }
+    100%{
+
+    }
+}
+@keyframes fade-and-slide{
+    0%{
+        transform: translateY(2em);
+    }
+    100%{
+        
     }
 }
 .titleBar{
@@ -601,7 +618,7 @@ body{
     -webkit-filter: none;
 }
 .popupShell{
-    position: absolute;
+    z-index: 50;
     left: 0;
     right: 0;
     top: 0;
@@ -639,6 +656,7 @@ body{
 .smallWindow{
     height:100%;
     width:99%;
+    animation: .2s fade-and-slide;
 }
 .appContent{
     height:91.6%;
@@ -756,8 +774,9 @@ body{
 }
 .edgeNavBar input{
     height:70%;
-    width:50%;
+    width:60%;
     margin: auto;
+    margin-left:1em;
     border:none;
     border-left:.1em solid darkgray;
     border-right: .1em solid darkgray;
@@ -778,6 +797,7 @@ body{
     text-align: center;
     height:100%;
     overflow: auto;
+    animation: .2s fade-and-scale;
 }
 .settingsPane h3{
     font-weight: 100;
@@ -813,6 +833,7 @@ body{
     flex-wrap: wrap;
     width:100%;
     max-width: 48em;
+    animation: .4s fade-and-shrink;
 }
 .settingsPaneSection{
     height:10em;
@@ -836,6 +857,7 @@ body{
     display:flex;
     height:10em;
     overflow: auto;
+    animation: .2s fade-and-scale;
 }
 #settingsSection1{
     position: relative;
@@ -843,6 +865,20 @@ body{
     flex-wrap: wrap;
     align-content: flex-start;
     flex-direction: column;
+}
+#settingsPane-1{
+    margin: auto;
+    height:100%;
+    width:20em;
+    flex-direction: column;
+}
+#settingsPane-1 .windowsLogo{
+    position: relative;
+    margin: 0 auto;
+}
+#settingsPane-1 .windowsLogo div{
+    position: relative;
+    border: .2em solid white;
 }
 #settingsPane-4{
     display: flex;
@@ -883,7 +919,7 @@ body{
     flex-direction: column;
     text-align: left;
     margin:.5em;
-    display: none;
+    animation: .3s fade-and-slide;
 }
 .preview{
     height:9em;
@@ -961,6 +997,10 @@ body{
 .colorSelector{
     display: flex;
 }
+.selectedColor{
+    border:.2em solid black;
+    box-sizing: border-box;
+}
 #settingsSection2{
     height:5em;
     flex-wrap: wrap;
@@ -982,7 +1022,7 @@ body{
     height:15em;
 }
 
-.backArrow{
+.backArrow, .arrow{
     height:100%;
     width:1em;
     padding-left:1em;
@@ -995,7 +1035,23 @@ body{
 .backArrow:hover{
     background: dodgerblue;
 }
-
+#nav2{
+    transform: rotate(180deg)
+}
+.arrow{
+    height:3em;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.arrow:hover{
+    background:lightgray;
+}
+.reload{
+    margin: auto;
+    margin-left: 1em;
+    margin-right: 0;
+    max-height: 1.2em;
+}
 #accountInfo{
     display:flex;
     width:100%;
@@ -1046,11 +1102,41 @@ body{
 .input:hover{
     background:lightgray;
 }
-#6app{
-    
+.custom-menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    padding: 0;
+}
+#creator{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Each of the items in the list */
+.custom-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+    list-style-type: none;
+    transition: all .3s ease;
+}
+
+.custom-menu li:hover {
+    background-color: #DEF;
 }
 
 
+@media screen and (max-width:1024px){
+    .startMenu{
+        width:60%;
+    }
+}
 
 
 

@@ -1,7 +1,15 @@
+<!--Designed by Tanner Villarete, Summer of 2016.
+    No rights reserved (obviously).
+    Feel free to do whatever you'd like to this!
+    Special thanks to Reddit for the support for this project
+    And StackOverflow for the quick answers ;)
+
+    github.com/tvillarete-->
+
+
 <!DOCTYPE html>
 <html>
     <head>
-<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
         <link rel="stylesheet" href="jquery-ui.min.css">
         <script src="external/jquery/jquery.js"></script>
         <script src="jquery-ui.min.js"></script>
@@ -9,6 +17,7 @@
         <title>Desktop</title>
     </head>
     <body onload="startup()">
+        <!-- Windows Logo Loading Screen -->
         <div class="loadingScreen">
             <div class="windowsLogo" id="winLoader">
                 <div></div>
@@ -39,6 +48,7 @@
                 </div>
             </div>
         </div>
+        <!--Taskbar-->
         <div class="taskbar">
             <div class="startButton">
                 <img draggable="false" src="images/windows.png">
@@ -67,6 +77,7 @@
             <div class="taskbarIcon" id="6icon">
                 <img src='images/spotify.png'>
             </div>
+            <!--Clock and Date-->
             <div class="taskbarRight">
                 <div class="taskbarRightIcon" id="clock">
                     <div id="time">
@@ -81,20 +92,24 @@
                     </div>
                 </div>
                 <script>
+                    // Controller for the Date and Time
                     var month = new Date().getMonth();
                     month+=1;
                     var day = new Date().getDay();
-                    day+=25;
+                    day+=2;
                     var year = new Date().getFullYear();
                     var minutes = new Date().getMinutes();
                     var hours = new Date().getHours();
+                    if (hours == 0){
+                        hours+=12;
+                    }
                     var ampm = " AM";
                     if (hours > 12){
                         hours-=12;
                         ampm="PM";
                     }
-                    
                     $("#hour").append("<p>"+hours+":</p>");
+                    
                     if (minutes < 10){
                         $("#min").append("<p>0"+minutes+"</p>");
                     }
@@ -105,13 +120,10 @@
                     $("#month").append("<p>"+month+"</p>");
                     $("#day").append("<p>/"+day+"</p>");
                     $("#year").append("<p>/"+year+"</p>");
-                    $(document).ready(function() {
-                        var refreshId = setInterval(function(){
-                        });
-                    });
                 </script>
             </div>
         </div>
+        <!--Main screen for Cortana -->
         <div class="cortanaMenu">
             <div class="cortanaSidebar">
                 <div class="cortanaSidebarButton" id="1csb">
@@ -145,16 +157,12 @@
                         <img src="images/power.png">
                         <p>Power</p>
                     </div>
-<!--
-                    <div class="sidebarButton" id="sidebar">
-                        <img src="images/allApps.png">
-                        <p>All Apps</p>
-                    </div>
--->
                 </div>
                      
                      
             </div>
+            <!--This is the housing for the app icons in the Start Menu.
+                Each cluster of apps is inside the "appSection" class -->
             <div class="appview">
                 <div class="appSection">
                     <p>Main</p>
@@ -163,7 +171,7 @@
                             <img src="images/explorer.png">
                             <p>Explorer</p>
                         </li>
-                        <li class="app" id="2start" style="background:purple">
+                        <li class="app" id="2start">
                             <img src="images/edge.png">
                             <p>Edge</p>
                         </li>
@@ -196,24 +204,65 @@
                         <li class="app">Around!</li>
                     </div>
                 </div>
-<!--
-                <div class="appSection">
-                    <p>Apps</p>
-                    <div class="appHolder">
-                        <div class="app">
-                            <p></p>
-                        </div>
-                        <div class="app"></div>
-                        <div class="app"></div>
-                        <div class="app"></div>
-                        <div class="app"></div>
-                        <div class="app"></div>
-                        <div class="app"></div>
-                    </div>
-                </div>
--->
             </div>
         </div>
+        
+        <!--This is for the right click menu-->
+        <ul class='custom-menu'>
+            <li id="1context" data-action="first">Change Background</li>
+            <li data-action="second">Second thing</li>
+            <li data-action="third">Third thing</li>
+        </ul>
+        <script>
+            $(document).bind("contextmenu", function (event) {
+    
+                // Avoid the real right click
+                event.preventDefault();
+
+                // Show contextmenu
+                $(".custom-menu").finish().toggle(100).
+
+                // In the right position (the mouse)
+                css({
+                    top: event.pageY + "px",
+                    left: event.pageX + "px"
+                });
+            });
+
+
+            // If the document is clicked somewhere
+            $(document).bind("mousedown", function (e) {
+
+                // If the clicked element is not the menu
+                if (!$(e.target).parents(".custom-menu").length > 0) {
+
+                    // Hide it
+                    $(".custom-menu").hide(100);
+                }
+            });
+
+
+            // If the menu element is clicked
+            $(".custom-menu li").click(function(){
+                switch($(this).attr("data-action")) {
+
+                    // Case for whatever section is clicked
+                    case "first": 
+                        $("#3app").fadeIn("fast");
+                        break;
+                    // Haven't done anything here yet
+                    case 
+                        "second": 
+                        alert("second"); 
+                        break;
+                    case "third": 
+                        alert("third");
+                        break;
+                }
+                // Hide the menu after section was triggered
+                $(".custom-menu").hide(100);
+              });
+        </script>
         <div class="desktop">
             <div class="shortcutShell">
                 <div class="shortcut" id="2shortcut">
@@ -225,6 +274,7 @@
                     <p>Settings</p>
                 </div>
             </div>
+            <!--File Explorer App #1app-->
             <div class="appShell" id="1app">
                     <div class="titleBar">
                         <p>File Explorer</p>
@@ -250,16 +300,10 @@
                             </div>
                         </div>
                         <div class="explorerNav">
-<!--
-                            <div class="explorerNav-button">
-                                Left
-                            </div>
--->
                             <img class="explorerNav-button" src="images/arrow.png">
                             <img class="explorerNav-button" src="images/arrow.png">
                             <img class="explorerNav-button" src="images/downArrow.png">
                             <img class="explorerNav-button" src="images/arrow.png">
-
                             <div class="explorerNav-button">
                                 Quick Access
                             </div>
@@ -294,6 +338,7 @@
                         </div>
                     </div>
             </div>
+            <!--Edge Browser App #2app-->
             <div class="appShell" id="2app">
                 <div class="titleBar">
                     <p>Edge Browser</p>
@@ -305,22 +350,68 @@
                 </div>
                 <div class="appContent">
                     <div class="edgeNavBar">
-                        <div class="backArrow"></div>
-                        <h6>Note: Some websites won't work</h6>
+                        <img class="arrow" id="nav1" src="images/arrow.png">
+                        <img class="arrow" id="nav2" src="images/arrow.png">
+                        <img class="reload" id="nav3" src="images/reload.png">
                         <input class="edgeSearch" type="text" action="javascript" placeholder="Enter an address">
                     </div>
                     <div class="edgeContent">
-                        <iframe src="http://www.bing.com"></iframe>
+                        <iframe src="http://www.google.com/chrome"></iframe>
                     </div>
                 </div>
                 <script>
+                    //Switch iframes
+                    localStorage.setItem("prevWebsite","http://www.google.com/chrome");
+                    localStorage.setItem("nextWebsite","null");
+                    function navigateEdge(back,forward){
+                        if (back==false && forward==false){
+                            var website = $(".edgeSearch").val();
+                            $(".edgeContent iframe").remove();
+                            if (website.indexOf("http") == -1){
+                                website = "http://"+website;
+                            }
+                            localStorage.setItem("nextWebsite",website);
+                            $(".edgeContent").html("<iframe src="+website+" alt='oh no'></iframe>");  
+                        }
+                        else if (back==true && forward == false){
+                            var lastWebsite=localStorage.getItem("prevWebsite");
+                            $(".edgeContent iframe").remove();
+                            $(".edgeContent").html("<iframe src="+lastWebsite+"></iframe>"); 
+                            website = lastWebsite;
+                        }
+                        else{
+                            if (localStorage.getItem("nextWebsite")!="null"){
+                                var nextWeb = localStorage.getItem("nextWebsite");
+                                $(".edgeContent iframe").remove();
+                                $(".edgeContent").html("<iframe src="+nextWeb+"></iframe>");  
+                                $(".edgeSearch").val()=nextWeb;
+                                website = nextWeb;
+                            }
+                        }
+                    }
+                    
                     $(".edgeSearch").change(function(){
-                        var website = $(".edgeSearch").val();
-                        $(".edgeContent iframe").remove();
-                        $(".edgeContent").html("<iframe src="+website+"></iframe>");
+                        navigateEdge(false,false);
                     })
+                    $("#nav1").click(function(){
+                        navigateEdge(true,false);
+                    })
+                    $("#nav2").click(function(){
+                        navigateEdge(false,true);
+                    })
+                    $("#nav3").click(function(){
+                        if ($(".edgeSearch").val()!=""){
+                            navigateEdge(false,false);
+                        }
+                        else{
+                            $(".edgeContent iframe").remove();
+                            $(".edgeContent").html("<iframe src='http://www.google.com/chrome'></iframe>");  
+                        }
+                    })
+                    
                 </script>
             </div>
+            <!--Settings App #3app-->
              <div class="appShell" id="3app">
                  <div class="titleBar">
                      <img class="backArrow" src="images/arrow.png">
@@ -367,54 +458,39 @@
                                  <img src="images/update.png">
                                 <p>Update and Security</p>
                              </div>
-<!--
-                             <h3>Personalization</h3>
-                             <ul>Choose a Background</ul>
-                             <div class="settingsSection" id="settingsSection1">
-                                 <div class="wallpaper" id="1wallpaper">
-                                    <img src="images/backgroundIcon1.jpg">
-                                 </div>
-                                 <div class="wallpaper" id="2wallpaper">
-                                    <img src="images/backgroundIcon2.jpg">
-                                 </div>
-                                 <div class="wallpaper" id="3wallpaper">
-                                    <img src="images/backgroundIcon3.jpg">
-                                 </div>
-                                 <div class="wallpaper" id="4wallpaper">
-                                    <img src="images/backgroundIcon4.jpg">
-                                 </div>
-                                 <div class="customWallpaper">
-                                    <img src="images/upload.ico">
-                                 </div>
-                             </div>
-                             <ul>Choose a Color Scheme</ul>
-                             <div class="settingsSection">
-                             <h3>Accounts</h3>
-                             <div class="settingsSection" id="settingsSection3">
-                                <ul>Enter a name/social security number (optional) and add a picture to connect you to all that Windows has to offer.</ul>
-                                 <div id="accountInfo">
-                                     <div>
-                                         <input class="input" id="accountName" type="text" placeholder="First/Last Name">
-                                         <input class="input" id="accountPicture" type="text" placeholder="Profile Picture URL">
-                                         <input class="input" if="accountOther" type="text" placeholder="Social Security Number (Optional)">
-                                     </div>
-                                     <div class="profilePicture">
-                                         <img id="profilePicture" src="images/profile.png">
-                                         <div id="sampleProfile"></div>
-                                         <p id="sampleName">First Last</p>
-                                     </div>
-                                 </div>
-                             </div>
-                             <h3>About</h3>
-                             <div class="settingsSection" id="settingsSection4">
-                                 <ol>
-                                    <h3>Designed by Tanner Villarete</h3>
-                                     <p>Just another weekend project. Why not test my HTML skills by making a full-fledged (sorta) desktop environment? Completely pointless, but tons of fun to see come together.</p>
-                                     <a href="http://users.csc.calpoly.edu/~tvillare">Visit my website here</a>
-                                 </ol>
-                             </div>
--->
                          </ol>
+                         <div class="settingsSection" id="settingsPane-1">
+                             
+                             <div class="windowsLogo" id="winLoader">
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                             </div>
+                             <div>
+                                 <h1>System Settings</h1>
+                                 <h2>Windows 10 Replica Edition</h2>
+                                 <h6>DISCLAIMER: I'm not affiliated with Microsoft in any way, shape or form. Please don't sue me... i'm just trying to learn web development :/</h6>
+                                 <div>
+                                     <p>Designed by</p>
+                                     <p id="creator">Tanner Villarete</p>
+                                 </div>
+                             </div>
+                             
+                         <script>
+                            $("#creator").click(function(){
+                                $("#2app").fadeIn("fast").css("z-index","20");
+                                $(".edgeContent iframe").remove();
+                                $(".edgeContent").html("<iframe src='http://users.csc.calpoly.edu/~tvillare'></iframe>"); 
+                            })
+                         </script>
+                         </div>
+                         <div class="settingsSection" id="settingsPane-2">
+                             <h1>Devices</h1>
+                         </div>
+                         <div class="settingsSection" id="settingsPane-3">
+                             <h1>Internet Settings</h1>
+                         </div>
                          <div class="settingsSection" id="settingsPane-4">
                              <div class="settingsPane-4-Sidebar">
                                 <p>Personalization</p>
@@ -490,8 +566,11 @@
                                          <div class="color" name="green" style="background:green"></div>
                                          <div class="color" name="purple" style="background:purple"></div>
                                          <div class="color" name="indigo" style="background:indigo"></div>
-                                         <div class="color" name="none" style="background:white; border:.2em solid black; box-sizing:border-box"></div>
+                                         <div class="color" name="none" style="background:white; border:.1em solid black; box-sizing:border-box"></div>
                                      </div>
+                                 </div>
+                                 <div class="settingsPane-4-Main-Group" id="settingsPane-4-5">
+                                     <p>Start Menu</p>
                                  </div>
                                  <script>
                                      $(".settingsPane-4-Main-Group").hide();
@@ -517,22 +596,39 @@
                                  </div>
                              </div>
                          </div>
+                         <div class="settingsSection" id="settingsPane-5">
+                             <h1>Accounts</h1>
+                         </div>
+                         <div class="settingsSection" id="settingsPane-6">
+                             <h1>Date and Time</h1>
+                         </div>
+                         <div class="settingsSection" id="settingsPane-7">
+                             <p>lol</p>
+                             <h1>Privacy</h1>
+                         </div>
+                         <div class="settingsSection" id="settingsPane-8">
+                             <p>Update and Security</p>
+                         </div>
                      </div>
                      <script>
+                         // This controls the hiding/showing of different sections in the app
                          for (i=0; i<9; i++){
                              $(".backArrow, #settingsPane-"+i).hide();
                          }
-                         $(".settingsPaneSection").click(function(){
+                         // Click a settings icon to take you to that submenu
+                         $(".settingsPaneSection, #1context").click(function(){
                              panel = parseInt($(this).attr("id"));
-//                             if (this.attr("class") == "settingsPaneSection"){
-                                 $(".settingsPaneSelector, .settingsPane h3").hide();
-                                 $(".backArrow, #settingsPane-"+panel).show();
-//                             }
-//                             else{
-//                                 $(".settingsPane-4-Main-Group").hide();
-//                                 $("#settingsPane-4-"+panel).show();
-//                             }
+                             $(".settingsPaneSelector, .settingsPane h3").hide();
+                             if ($(this).attr("id")=="1context"){
+                                 $(".backArrow, #settingsPane-4").fadeIn("fast");
+                                 $(".settingsPane-4-Main-Group").hide();
+                                 $("#settingsPane-4-1").show();
+                             }
+                             else{
+                                 $(".backArrow, #settingsPane-"+panel).fadeIn("fast");
+                             }
                          });
+                         // Go back to the main settings page
                          $(".backArrow").click(function(){
                              for (i=0; i<9; i++){
                                  $(".backArrow, #settingsPane-"+i).hide();
@@ -574,10 +670,8 @@
                     </div>
                 </div>
                  <div class="popupMainContent">
-                     <h3>Enter an image URL (Don't press enter) and hit done.</h3>
-                     <form>
-                        <input class="input" id="wpform" type="text">
-                     </form>
+                     <h3>Enter an image URL and press done.</h3>
+                     <input class="input" id="wpform" type="text" action="javascript">
                      <div class="notificationButtonContainer">
                          <div class="notificationButton" id="5notif" >Cancel</div>
                          <div class="notificationButton" id="5notif">Done</div>
@@ -608,38 +702,49 @@
                     </div>
                 </div>
                 <div class="appContent">
+                    <h6 style="margin: auto">DISCLAIMER: I did not make this terminal! Type 'who' for more info and due credit.</h6>
                     <iframe src="http://www.htmlfivewow.com/demos/terminal/terminal.html"></iframe>
                 </div>
             </div>
         </div>
             
         <script>
-            function bringToTop(appnumber){
-                var boxes = $(".appShell, .popupShell");
-
-                // Set up click handlers for each box
-                boxes.click(function() {
+            // Window Management function to control which window will be on top
+            function bringToTop(appnumber) {
+                var c = [
+                    "#1app", 
+                    "#2app", 
+                    "#3app", 
+                    //These next two are popups, not apps
+//                    "#4app", 
+//                    "#5app",
+                    "#6app",
+                    "#7app",
+                    "#8app"
+                ];
+                var boxes = c.join(", ");
+                // Set up mousedown handlers for each box
+                var el = $("#"+appnumber+"app");
+                $(boxes).mousedown(function() {
                     var el = $(this), // The box that was clicked
                         max = 0;
 
-                    // Find the highest z-index
-                    boxes.each(function() {
-                        // Find the current z-index value
-                        var z = parseInt( $( this ).css( "z-index" ), 10 );
-                        // Keep either the current max, or the current z-index, whichever is higher
-                        max = Math.max( max, z );
-                    });
+                // Find the highest z-index
+                $(boxes).each(function() {
+                     $( this ).css( "z-index" , 10); //first assign the value and then get it
+                    // Find the current z-index value
+                    var z = parseInt( $( this ).css( "z-index" ));//get the zindex after assigning
+                    // Keep either the current max, or the current z-index, whichever is higher
+                    max = Math.max( max, z );
+                });
 
-                    // Set the box that was clicked to the highest z-index plus one
-                    el.css("z-index", max + 1 );
+                // Set the box that was clicked to the highest z-index plus one
+                el.css("z-index", max + 1 );
                 });
             }
             
-            
-            
             $(".appShell, .popupShell").draggable();
             $(".appHolder, .shortcutShell, .taskbarIcon").sortable();
-//            $(".shortcutShell").selectable();
             $( ".appShell" ).resizable({
                 minWidth:300,
                 minHeight:300,
@@ -647,20 +752,25 @@
             $( ".startMenu" ).resizable({
                 minWidth:600
             });
+            // ON LOAD
             $(document).ready(function(){
                 $(".startMenu, .cortanaMenu").hide();
-                $(".startMenu, .cortanaMenu").addClass("startHide");
             })
+            // Click functions for each type of identifier
+            
+            // Main start button
             $(".startButton").click(function(){
-                $(".startMenu").toggleClass("startHide");
-                $(".startMenu").fadeToggle("fast");
+                $(".startMenu").fadeToggle(100);
                 $(".cortanaMenu").fadeOut();
             });
+            
+            // Clicking on an app window for window management
             $(".appShell, .shortcutShell").click(function(){
-                $(".startMenu, .cortanaMenu").addClass("startHide");
-                $(".startMenu, .cortanaMenu").fadeOut();
-//                bringToTop(parseInt($(this).attr("id")));
+                $(".startMenu, .cortanaMenu").fadeOut(100);
+                bringToTop(parseInt($(this).attr("id")));
             })
+            
+            // Clicking on any minimize, close, or maximize button
             $(".taskbarIcon, .navButton").click(function(){
                 taskbar = parseInt($(this).attr("id"));
                 if ($(this).hasClass(".taskbarIcon")){
@@ -669,17 +779,19 @@
                 else{
                     $("#"+taskbar+"icon").toggleClass("activeIcon");
                 }
-                $('#'+taskbar+'app').fadeToggle();
+                $('#'+taskbar+'app').fadeToggle("fast");
                 $('.startMenu').addClass("startHide");
                 $('.startMenu').fadeOut();
-                bringToTop(taskbar);
+                bringToTop(parseInt($(this).attr("id")));
             })
+            
+            // Clicking on the cortana searchbar
             $(".searchbar").click(function(){
-                $(".cortanaMenu").toggleClass("startHide");
                 $(".cortanaMenu").fadeToggle("fast");
-                $(".startMenu").addClass("startHide");
                 $(".startMenu").fadeOut("fast");
             })
+            
+            // Taskbar active window status
             $(".app, .sidebarButton, .shortcut").click(function(){
                 app = parseInt($(this).attr("id"));
                 if (app != 1){
@@ -689,26 +801,19 @@
                         $('#'+app+'icon').fadeToggle("fast");
                         $('#'+app+'icon').toggleClass("activeIcon");
                     }
-                    $('.startMenu').addClass("startHide");
                     $('.startMenu').fadeOut("fast");
-                    bringToTop(parseInt($(this).attr("id")));
                 }
                 else{
                     if (!$("#"+app+"icon").hasClass("activeIcon")){
                         $('#'+app+'app').fadeToggle("fast");
                         $('#'+app+'icon').toggleClass("activeIcon");
                     }
-                    $('.startMenu').addClass("startHide");
                     $('.startMenu').fadeOut("fast");
-                    bringToTop(parseInt($(this).attr("id")));
                 }
+                bringToTop(parseInt($(this).attr("id")));
             })
-//            $(".shortcut").click(function(){
-//                shortcut = parseInt($(this).attr("id"));
-//                $('#'+shortcut+'app').fadeToggle();
-//                $('#'+shortcut+'icon').toggleClass("activeIcon");
-//                bringToTop(shortcut);
-//            })
+
+            // Clicking on any 'maximize' button
             $(".navButton2").click(function(){
                 size = parseInt($(this).attr("id"));
                 $('#'+size+'app').toggleClass("smallWindow");
@@ -729,113 +834,103 @@
                     $('#'+close+'icon').toggleClass("activeIcon");
                 }
             })
-//            $(".sidebarButton").click(function(){
-//                sidebar = parseInt($(this).attr("id"));
-//                if (sidebar != 1){
-//                    $('#'+sidebar+'app').fadeToggle();
-//                    $('.startMenu').addClass("startHide");
-//                    $('.startMenu').fadeOut();
-//                    bringToTop(sidebar);
-//                }
-//                else{
-//                    $('#'+sidebar+'app').fadeToggle();
-//                    $('.startMenu').addClass("startHide");
-//                    $('.startMenu').fadeOut();
-//                    bringToTop(sidebar);
-//                }
-//            })
 
             //SETTINGS
+            // Generic wallpaper selection
             $(".wallpaper").click(function(){
                 wallpaper = parseInt($(this).attr("id"));
                 $("body, .preview").css("background-image", "url(images/background"+wallpaper+".jpg)");  
+                // Save the wallpaper for next time
                 localStorage.setItem("customBackground","no");
                 localStorage.setItem("backgroundID",wallpaper);
             })
+            
+            // Custom wallpaper selection
+            // Opens a new popup to enter URL
             $(".customWallpaper").click(function(){
-//                    var custom = window.prompt("Please enter a picture URL");
                 $("#5app").fadeToggle();
                 $("#5app").trigger("click");
                 $("#5icon").fadeToggle();
                 $('#5icon').toggleClass("activeIcon");
                 bringToTop(5);
             })
-            $( "#wpform" )
-                .keyup(function() {
+            
+            // Detect when the custom wallpaper URL has a change in text...
+            // Then change the background based on the text entered
+            $("#wpform").change(function(){
                 var wpurl = $( this ).val();
                 $("body").css("background-image", "url("+wpurl+")");  
                 localStorage.setItem("customBackground",wpurl);
             })
+            
+            // When a color is selected...
             $(".color").click(function(){
+                $(".color").removeClass("selectedColor");
+                $(this).addClass("selectedColor");
                 color = $(this).attr("name");
                 if(color == "none"){
                     $(".colorScheme, .previewApp, .previewApp2").css("background-color","dodgerblue");
+                    // Save the color for next time
                     localStorage.setItem("getColor","no");
                     $(".app, .wideapp").removeClass("colorScheme");
                 }
                 else{
                     $('.app, .wideapp').addClass("colorScheme");
-                    $(".colorScheme, .previewApp, .previewApp2").css("background-color",color);
+                    $(".colorScheme, .previewApp, .previewApp2").css("background",color);
                     localStorage.setItem("getColor",color);
                 }
             })
-            $( "#accountName" )
-                .keyup(function() {
-                var accountName = $( this ).val();
-                $("#sampleName").text(accountName);
-                localStorage.setItem("accountName",accountName);
-            })
-            $( "#accountPicture" )
-                .keyup(function() {
-                var accountPicture = $( this ).val();
-                $("#profilePicture").remove();
-                $("#sampleProfile").show();
-                $("#sampleProfile").css("background-image", "url("+accountPicture+")");
-                localStorage.setItem("accountName",accountPicture);
-            })
 
-            //ONLOAD
+            // Startup Functions that must happen before windows logo fades out.
+            // If any errors occur, the windows logo will not fade out
             function startup(){
                 getColor();
                 getBackground();
                 getIcons();
             }
+            
             function getColor(){
                 var getColor = localStorage.getItem("getColor")
                 if (getColor!="no"){
                     $('.app, .wideapp').addClass("colorScheme");
-                    $(".colorScheme").css("background-color",getColor);
+                    $(".colorScheme, .previewApp, .previewApp2").css("background-color",getColor);
                 }
             }    
+            
             function getBackground(){
                 var backgroundID = localStorage.getItem("backgroundID");
                 var customBackground = localStorage.getItem("customBackground");
                 if (getBackground || customBackground){
                     if(customBackground=="no"){
-                        $("body").css("background-image", "url(images/background"+backgroundID+".jpg)");  
+                        $("body, .preview").css("background-image", "url(images/background"+backgroundID+".jpg)");  
                     }
                     else if(customBackground && customBackground!="no"){
-                        $("body").css("background-image", "url("+customBackground+")");
+                        $("body, .preview").css("background-image", "url("+customBackground+")");
                     }
                     else{
-                        $("body").css("background-image", "url(images/background1.jpg)"); 
+                        $("body, .preview").css("background-image", "url(images/background1.jpg)"); 
                     }
                 }
             }
+            
+            // Future development to add apps that will stay open for next reload.
+            // For now, all apps will be hidden in the taskbar except Explorer
             function getIcons(){
                 $(".taskbarIcon").hide();
                 $("#1icon").show();
             }
 
+            // This is the original window size setting
             $(".appShell").data({
                 'originalLeft': $(".appShell").css('left'),
                 'origionalTop': $(".appShell").css('top')
             });
 
+            // When all functions have passed, show the desktop
             $(window).load(function(){
-//                $(".loadingscreen").addClass("circleOut");
-            $(".loadingScreen").delay(0).fadeOut("slow", 0);
-        });
+                $(".loadingScreen").fadeOut("slow", 0);
+            });
         </script>
     </body>
 </html>
+
