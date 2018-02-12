@@ -1,0 +1,46 @@
+$menu-max-height: 30em;
+$menu-max-width: 50em;
+
+body {
+    overflow: hidden;
+    font-family: Segoe UI, sans-serif;
+}
+
+.closed {
+    opacity: 0;
+    transform: translateY($menu-max-height);
+}
+
+.blur {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: -20px;
+    filter: blur(11px);
+    background: #000000b0;
+    background-blend-mode: darken;
+    background-image: url(files/images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+@keyframes open-taskbar-menu {
+    0% {
+        opacity: 0;
+        transform: translateY($menu-max-height);
+    }
+}

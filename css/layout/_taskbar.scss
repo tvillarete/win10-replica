@@ -1,0 +1,55 @@
+#taskbar {
+    $taskbar-height: 3em;
+    $hover-bg: rgb(70, 70, 70);
+    
+    position: relative;
+    z-index: 100;
+    height: 3em;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    background: black;
+    
+    .blur {
+        background: #0000007a;
+    }
+    
+    .taskbar-button {
+        position: relative;
+        display: flex;
+        height: $taskbar-height;
+        width: $taskbar-height;
+        transition: all 0.15s ease-in-out;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        box-sizing: border-box;
+        
+        &.tb-active {
+            border-bottom: 2px solid white;
+            background: rgba(50,50,50,0.8);
+            box-sizing: border-box;
+        }
+        
+        &.tb-inactive {
+            border-bottom: 2px solid white;
+            box-sizing: border-box;
+        }
+        
+        &:hover {
+            background: $hover-bg;
+            border-left: none;
+            border-right: none;
+        }
+        
+        &.inverted {
+            img {
+                filter: invert(1);
+            }
+        }
+        
+        img {
+            max-height: 50%;
+            margin: auto;
+        }
+    }
+}

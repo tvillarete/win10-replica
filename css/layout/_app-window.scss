@@ -1,0 +1,168 @@
+.app-window {
+    $app-active-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    $app-inactive-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    $duration: 0.2s;
+    
+    z-index: 0;
+    position: absolute;
+    height: 50em;
+    width: 60em;
+    background: white;
+    box-shadow: $app-active-box-shadow;
+    
+    &.open-from-minimized {
+        animation: app-opening-from-minimized $duration;
+    }
+    
+    &.app-closed {
+        animation: app-opening $duration;
+    }
+    
+    &.maximized {
+        height: auto;
+        width: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transition: all $duration ease;
+        animation: app-maximizing $duration;
+    }
+    
+    .title-bar {
+        display: flex;
+        justify-content: space-between;
+        height: 2em;
+        line-height: 2em;
+        padding-left: 0.5em;
+    }
+    
+    .title-bar-controls {
+        display: flex;
+        height: 100%;
+    }
+    
+    .title-bar-button {
+        height: 100%;
+        width: 3em;
+        text-align: center;
+        cursor: default;
+        transition: all $duration ease-out;
+        
+        &.red {
+            font-size: 2em;
+            width: 1.5em;
+            
+            &:hover {
+                color: white;
+                background: red;
+            }
+        
+            &:active {
+                background: #ca4d4d;
+            }
+        }
+        
+        &:hover {
+            background: rgba(0,0,0,0.05);
+        }
+        
+        &:active {
+            background: rgba(0,0,0,0.12);
+        }
+    }
+    
+    .hover-effect {
+        &:hover {
+            outline: 2px solid lightgray;
+        }
+    }
+    
+    .default {
+        position: absolute;
+        top: 2em;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        
+        &.inverted {
+            img {
+                filter: invert(1);
+            }
+        }
+        
+        img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            max-height: 8em;
+        }
+        
+        &.blue {
+            background: dodgerblue;
+        }
+    }
+    
+    .app-contents {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .main-screen {
+        display: flex;
+    }
+    
+    .app-contents-shown {
+        animation: scale-app-contents 0.35s;
+    }
+    
+    &.closing {
+        animation: app-closing $duration;
+    }
+    
+    &.minimizing {
+        animation: app-minimizing $duration;
+    }
+    
+    @keyframes scale-app-contents {
+        0% {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+    }
+    
+    @keyframes app-closing {
+        100% {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+    }
+    
+    @keyframes app-minimizing {
+        100% {
+            opacity: 0;
+            transform: translateY(50%) scale(0.8);
+        }
+    }
+    
+    @keyframes app-opening {
+        0% {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+    }
+    
+    @keyframes app-maximizing {
+        0% {
+            transform: translateY(5%) scale(0.95);
+        }
+    }
+    
+    @keyframes app-opening-from-minimized {
+        0% {
+            opacity: 0;
+            transform: translateY(50%) scale(0.8);
+        }
+    }
+}

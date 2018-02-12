@@ -1,0 +1,124 @@
+#settings-app {
+    border: 1px solid dodgerblue;
+    box-sizing: border-box;
+    
+    .main-screen {
+        position: absolute;
+        top: 2em;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .settings-search-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+        margin: 0 auto 3em auto;
+        
+        h2 {
+            font-weight: 400;
+        }
+        
+        input[type=text] {
+            width: 100%;
+            max-width: 20em;
+            margin: 0 auto;
+            font-size: 1em;
+            padding: 0.25em;
+            outline: none;
+            border: 2px solid rgb(150,150,150);
+            
+            &:focus {
+                outline: 2px solid dodgerblue;
+            }
+        }
+    }
+    
+    .settings-category-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        max-width: 60em;
+        overflow: auto;
+    }
+    
+    .main-screen-button {
+        height: 11.6em;
+        width: 11.6em;
+        margin: 0.2em;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        
+        &:active {
+            transform: scale(0.95);
+        }
+        
+        img {
+            max-height: 3em;
+            margin: 0.5em;
+        }
+        
+        .button-title, .button-subtitle {
+            font-size: 0.8em;
+            font-weight: 400;
+            margin: 0;
+        }
+        
+        .button-subtitle {
+            color: rgb(100,100,100);
+        }
+    }
+    
+    .button-icon {
+        margin: 0 auto;
+        width: 65px;
+        height: 65px;
+        
+        &.system-settings {
+            background: url(files/images/icons/settings-sheet.jpg) -6px 0;
+        }
+        &.devices-settings {
+            background: url(files/images/icons/settings-sheet.jpg) -86px 0;
+        }
+        &.phone-settings {
+            background: url(files/images/icons/settings-sheet.jpg) -173px 0;
+        }
+        &.network-settings {
+            background: url(files/images/icons/settings-sheet.jpg) -250px 0;
+        }
+        &.personalize-settings {
+            background: url(files/images/icons/settings-sheet.jpg) -331px 0;
+        }
+        &.apps-settings {
+            background: url(files/images/icons/settings-sheet.jpg) -6px -73px;
+        }
+        &.accounts-settings {
+            background: url(files/images/icons/settings-sheet.jpg) -90px -73px;
+        }   
+        &.time-settings {
+            background: url(files/images/icons/settings-sheet.jpg) -175px -73px;
+        }
+        &.gaming-settings {
+            background: url(files/images/icons/settings-sheet.jpg) -250px -73px;
+        }
+        &.access-settings {
+            background: url(files/images/icons/settings-sheet.jpg) -330px -73px;
+        }
+        &.cortana-settings {
+            background: url(files/images/icons/settings-sheet.jpg) 0 -147px;
+        }
+        &.privacy-settings {
+            background: url(files/images/icons/settings-sheet.jpg) -91px -147px;
+        }
+        &.update-settings {
+            background: url(files/images/icons/settings-sheet.jpg) -170px -147px;
+        }
+    }
+}

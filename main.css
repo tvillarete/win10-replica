@@ -1,0 +1,339 @@
+body {
+  overflow: hidden;
+  font-family: Segoe UI, sans-serif; }
+
+.closed {
+  opacity: 0;
+  transform: translateY(30em); }
+
+.blur {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: -20px;
+  filter: blur(11px);
+  background: #000000b0;
+  background-blend-mode: darken;
+  background-image: url(files/images/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; }
+
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+     supported by Chrome and Opera */ }
+
+@keyframes open-taskbar-menu {
+  0% {
+    opacity: 0;
+    transform: translateY(30em); } }
+#main {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  background: url(files/images/bg.jpg);
+  background-size: cover; }
+
+#desktop {
+  position: relative;
+  display: flex;
+  flex: 1; }
+
+#start-menu {
+  z-index: 99;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  max-height: 30em;
+  max-width: 50em;
+  background: rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+  transition: all 0.2s ease-out; }
+  #start-menu.closed .sm-app {
+    animation: none; }
+  #start-menu #sm-sidebar {
+    height: 100%;
+    width: 15em; }
+  #start-menu #sm-app-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    flex: 1;
+    color: white; }
+  #start-menu .sm-app {
+    height: 6em;
+    width: 6em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1em 0.25em;
+    padding: 0.5em;
+    background: dodgerblue;
+    animation: reveal-sm-content 0.25s;
+    animation-delay: 0.04s; }
+    #start-menu .sm-app:hover {
+      outline: 2px solid white; }
+    #start-menu .sm-app img {
+      max-height: 4em; }
+@keyframes reveal-sm-content {
+  0% {
+    opacity: 0;
+    transform: translateY(5em); }
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
+#taskbar {
+  position: relative;
+  z-index: 100;
+  height: 3em;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  background: black; }
+  #taskbar .blur {
+    background: #0000007a; }
+  #taskbar .taskbar-button {
+    position: relative;
+    display: flex;
+    height: 3em;
+    width: 3em;
+    transition: all 0.15s ease-in-out;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    box-sizing: border-box; }
+    #taskbar .taskbar-button.tb-active {
+      border-bottom: 2px solid white;
+      background: rgba(50, 50, 50, 0.8);
+      box-sizing: border-box; }
+    #taskbar .taskbar-button.tb-inactive {
+      border-bottom: 2px solid white;
+      box-sizing: border-box; }
+    #taskbar .taskbar-button:hover {
+      background: #464646;
+      border-left: none;
+      border-right: none; }
+    #taskbar .taskbar-button.inverted img {
+      filter: invert(1); }
+    #taskbar .taskbar-button img {
+      max-height: 50%;
+      margin: auto; }
+
+#cortana {
+  z-index: 99;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  max-height: 30em;
+  max-width: 20em;
+  background: black;
+  transition: all 0.2s ease-in-out; }
+
+.app-window {
+  z-index: 0;
+  position: absolute;
+  height: 50em;
+  width: 60em;
+  background: white;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22); }
+  .app-window.open-from-minimized {
+    animation: app-opening-from-minimized 0.2s; }
+  .app-window.app-closed {
+    animation: app-opening 0.2s; }
+  .app-window.maximized {
+    height: auto;
+    width: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: all 0.2s ease;
+    animation: app-maximizing 0.2s; }
+  .app-window .title-bar {
+    display: flex;
+    justify-content: space-between;
+    height: 2em;
+    line-height: 2em;
+    padding-left: 0.5em; }
+  .app-window .title-bar-controls {
+    display: flex;
+    height: 100%; }
+  .app-window .title-bar-button {
+    height: 100%;
+    width: 3em;
+    text-align: center;
+    cursor: default;
+    transition: all 0.2s ease-out; }
+    .app-window .title-bar-button.red {
+      font-size: 2em;
+      width: 1.5em; }
+      .app-window .title-bar-button.red:hover {
+        color: white;
+        background: red; }
+      .app-window .title-bar-button.red:active {
+        background: #ca4d4d; }
+    .app-window .title-bar-button:hover {
+      background: rgba(0, 0, 0, 0.05); }
+    .app-window .title-bar-button:active {
+      background: rgba(0, 0, 0, 0.12); }
+  .app-window .hover-effect:hover {
+    outline: 2px solid lightgray; }
+  .app-window .default {
+    position: absolute;
+    top: 2em;
+    bottom: 0;
+    left: 0;
+    right: 0; }
+    .app-window .default.inverted img {
+      filter: invert(1); }
+    .app-window .default img {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      max-height: 8em; }
+    .app-window .default.blue {
+      background: dodgerblue; }
+  .app-window .app-contents {
+    display: flex;
+    justify-content: center; }
+  .app-window .main-screen {
+    display: flex; }
+  .app-window .app-contents-shown {
+    animation: scale-app-contents 0.35s; }
+  .app-window.closing {
+    animation: app-closing 0.2s; }
+  .app-window.minimizing {
+    animation: app-minimizing 0.2s; }
+@keyframes scale-app-contents {
+  0% {
+    opacity: 0;
+    transform: scale(0.95); } }
+@keyframes app-closing {
+  100% {
+    opacity: 0;
+    transform: scale(0.95); } }
+@keyframes app-minimizing {
+  100% {
+    opacity: 0;
+    transform: translateY(50%) scale(0.8); } }
+@keyframes app-opening {
+  0% {
+    opacity: 0;
+    transform: scale(0.95); } }
+@keyframes app-maximizing {
+  0% {
+    transform: translateY(5%) scale(0.95); } }
+@keyframes app-opening-from-minimized {
+  0% {
+    opacity: 0;
+    transform: translateY(50%) scale(0.8); } }
+#settings-app {
+  border: 1px solid dodgerblue;
+  box-sizing: border-box; }
+  #settings-app .main-screen {
+    position: absolute;
+    top: 2em;
+    bottom: 0;
+    display: flex;
+    flex-direction: column; }
+  #settings-app .settings-search-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto 3em auto; }
+    #settings-app .settings-search-container h2 {
+      font-weight: 400; }
+    #settings-app .settings-search-container input[type=text] {
+      width: 100%;
+      max-width: 20em;
+      margin: 0 auto;
+      font-size: 1em;
+      padding: 0.25em;
+      outline: none;
+      border: 2px solid #969696; }
+      #settings-app .settings-search-container input[type=text]:focus {
+        outline: 2px solid dodgerblue; }
+  #settings-app .settings-category-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 60em;
+    overflow: auto; }
+  #settings-app .main-screen-button {
+    height: 11.6em;
+    width: 11.6em;
+    margin: 0.2em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden; }
+    #settings-app .main-screen-button:active {
+      transform: scale(0.95); }
+    #settings-app .main-screen-button img {
+      max-height: 3em;
+      margin: 0.5em; }
+    #settings-app .main-screen-button .button-title, #settings-app .main-screen-button .button-subtitle {
+      font-size: 0.8em;
+      font-weight: 400;
+      margin: 0; }
+    #settings-app .main-screen-button .button-subtitle {
+      color: #646464; }
+  #settings-app .button-icon {
+    margin: 0 auto;
+    width: 65px;
+    height: 65px; }
+    #settings-app .button-icon.system-settings {
+      background: url(files/images/icons/settings-sheet.jpg) -6px 0; }
+    #settings-app .button-icon.devices-settings {
+      background: url(files/images/icons/settings-sheet.jpg) -86px 0; }
+    #settings-app .button-icon.phone-settings {
+      background: url(files/images/icons/settings-sheet.jpg) -173px 0; }
+    #settings-app .button-icon.network-settings {
+      background: url(files/images/icons/settings-sheet.jpg) -250px 0; }
+    #settings-app .button-icon.personalize-settings {
+      background: url(files/images/icons/settings-sheet.jpg) -331px 0; }
+    #settings-app .button-icon.apps-settings {
+      background: url(files/images/icons/settings-sheet.jpg) -6px -73px; }
+    #settings-app .button-icon.accounts-settings {
+      background: url(files/images/icons/settings-sheet.jpg) -90px -73px; }
+    #settings-app .button-icon.time-settings {
+      background: url(files/images/icons/settings-sheet.jpg) -175px -73px; }
+    #settings-app .button-icon.gaming-settings {
+      background: url(files/images/icons/settings-sheet.jpg) -250px -73px; }
+    #settings-app .button-icon.access-settings {
+      background: url(files/images/icons/settings-sheet.jpg) -330px -73px; }
+    #settings-app .button-icon.cortana-settings {
+      background: url(files/images/icons/settings-sheet.jpg) 0 -147px; }
+    #settings-app .button-icon.privacy-settings {
+      background: url(files/images/icons/settings-sheet.jpg) -91px -147px; }
+    #settings-app .button-icon.update-settings {
+      background: url(files/images/icons/settings-sheet.jpg) -170px -147px; }
+
+/*# sourceMappingURL=main.css.map */

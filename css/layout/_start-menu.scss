@@ -1,0 +1,65 @@
+#start-menu {
+    z-index: 99;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    max-height: $menu-max-height;
+    max-width: $menu-max-width;
+    background: rgba(0,0,0,0.9);
+    overflow: hidden;
+    transition: all 0.2s ease-out;
+    
+    &.closed {
+        .sm-app {
+            animation: none;
+        }
+    }
+    
+    #sm-sidebar {
+        height: 100%;
+        width: 15em;
+    }
+    
+    #sm-app-container {
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+        flex: 1;
+        color: white;
+    }
+    
+    .sm-app {
+        height: 6em;
+        width: 6em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 1em 0.25em;
+        padding: 0.5em;
+        background: dodgerblue;
+        animation: reveal-sm-content 0.25s;
+        animation-delay: 0.04s;
+        
+        &:hover {
+            outline: 2px solid white;
+        }
+        
+        img {
+            max-height: 4em;
+        }
+    }
+    
+    @keyframes reveal-sm-content {
+        0% {
+            opacity: 0;
+            transform: translateY(5em);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}

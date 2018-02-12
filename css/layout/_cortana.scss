@@ -1,0 +1,12 @@
+#cortana {
+    z-index: 99;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    max-height: $menu-max-height;
+    max-width: 20em;
+    background: black;
+    transition: all 0.2s ease-in-out;
+}
