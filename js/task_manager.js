@@ -50,6 +50,7 @@ var TaskManager = {
     maximize: id => {
         var app = $(`#${id}`);
         var taskbarButton = $(`#${id}-tb`);
+        app.css({'top': 0, 'left': 0});
         
         app.removeClass('open-from-minimized').toggleClass('maximized');
     },

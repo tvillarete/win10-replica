@@ -49,3 +49,6 @@ Temporary Items
 .sass-cache/*
 *.scssc
 *.map
+/.sass-cache
+.sass-cache
+main.css.map

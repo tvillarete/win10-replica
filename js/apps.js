@@ -5,7 +5,6 @@ var AppManager = {
         
         if (!$(appWindow).hasClass('open-from-minimized')) {
             window.setTimeout(function() {
-                console.log(`#${id} .default`);
                 $(`#${id} .default`).fadeOut(250);
                 contents.addClass('app-contents-shown').show();
             }, 300);
@@ -14,6 +13,62 @@ var AppManager = {
             }, 500);
         }
     },
+    
+    addWindowDrag: (id) => {
+        var maximize = false;
+        var app = $(`#${id}`);
+        
+        app.draggable({
+            handle: $('.title-bar'),
+            drag: function() {
+                var appWindow = $(this);
+                appWindow.removeClass('maximized');
+                var pos = appWindow.position();
+                var x = pos.left;
+                var y = pos.top;
+                maximize = y < 0;
+                if (maximize) {
+                    SnappingGuide.showMax();
+                } else {
+                    SnappingGuide.hide();
+                }
+            },
+            
+            stop: function() {
+                console.log("HERE");
+                if (maximize) {
+                    TaskManager.maximize(id);
+                    app.css({'top': 0, 'left': 0});
+                }  
+                SnappingGuide.hide();
+            },
+            
+        });
+    },
+}
+
+var SnappingGuide = {
+    showMax: () => {
+        $('#snapping-guide').addClass('snap-max');
+    },
+    
+    showLeft: () => {
+        $('#snapping-guide').addClass('snap-left');
+    },
+    
+    showRight: () => {
+        $('#snapping-guide').addClass('snap-right');
+    },
+    
+    hide: () => {
+        if ($('#snapping-guide').hasClass('snap-max')) {
+            $('#snapping-guide').addClass('snap-closing');
+        }
+        window.setTimeout(function() {
+            $('#snapping-guide').removeClass('snap-max');
+            $('#snapping-guide').removeClass('snap-closing');
+        }, 130);
+    }
 }
 
 var Apps = {    
@@ -135,6 +190,7 @@ var Apps = {
             var element = Apps.Settings.element();
             TaskManager.init(Apps.Settings.options, element);
             AppManager.hideLoadingScreen(Apps.Settings.options.id);
+            AppManager.addWindowDrag(Apps.Settings.options.id);
         },
 
         element: () => {
@@ -201,6 +257,7 @@ var Apps = {
         init: () => {
             var element = Apps.Explorer.element();
             TaskManager.init(Apps.Explorer.options, element);
+            AppManager.addWindowDrag(Apps.Explorer.options.id);
         },
 
         element: () => {
@@ -224,6 +281,7 @@ var Apps = {
         init: () => {
             var element = Apps.SpotiFree.element();
             TaskManager.init(Apps.SpotiFree.options, element);
+            AppManager.addWindowDrag(Apps.SpotiFree.options.id);
         },
 
         element: () => {

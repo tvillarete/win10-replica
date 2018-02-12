@@ -1,6 +1,11 @@
 # Windows 10 HTML Replica
 ### Designed by Microsoft (obviously) and Replicated by Tanner Villarete
 
+# Note
+As of January 2018, a new version of this replica is being made. To view the
+old version, you'll have to find the specific commit and download those files.
+I promise you the new version will be miles better (hopefully!)
+
 ## Note
 _This replica is very much a work in progress. Currently many core features are missing_
 
@@ -10,7 +15,7 @@ _This replica is very much a work in progress. Currently many core features are 
   - Resize windows using click-to-drag
   - Rearrange desktop and taskbar icons
   - Click to bring window to top
-    
+
 ## Universal (Desktop and Mobile)
   - Minimize, maximize, close windows
 
@@ -23,7 +28,7 @@ _This replica is very much a work in progress. Currently many core features are 
   - Pretty much useless, but the animation is there :)
 
   ## Built-in 'Apps'
-  ### Edge browser 
+  ### Edge browser
   - Navigate to any website that supports iframes
 
   ### Settings

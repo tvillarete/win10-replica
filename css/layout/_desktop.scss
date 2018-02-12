@@ -3,3 +3,43 @@
     display: flex;
     flex: 1;
 }
+
+#snapping-guide {
+    z-index: 1000;
+    position: fixed;
+    display: none;
+    top: 0.5em;
+    bottom: 3.5em;
+    left: 0.5em;
+    right: 0.5em;
+    background: rgba(200, 200, 200, 0.4);
+    border: 1px solid rgba(150,150,150, 0.6);
+    
+    &.snap-max {
+        display: block;
+        animation: snap-max 0.15s;
+    }
+    
+    &.snap-left {
+        display: block;
+        left: 50%;
+    }
+    
+    &.snap-closing {
+        display: block;
+        animation: snap-close 0.15s;
+    }
+    
+    @keyframes snap-max {
+        0% {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+    }    
+    @keyframes snap-close {
+        100% {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+    }
+}
