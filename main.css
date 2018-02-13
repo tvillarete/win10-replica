@@ -92,8 +92,6 @@ body {
   right: 0;
   height: 100%;
   display: flex;
-  max-height: 30em;
-  max-width: 50em;
   background: rgba(0, 0, 0, 0.9);
   overflow: hidden;
   transition: all 0.2s ease-out; }
@@ -122,7 +120,9 @@ body {
     #start-menu .sm-app:hover {
       outline: 2px solid white; }
     #start-menu .sm-app img {
-      max-height: 4em; }
+      max-height: 4em;
+      max-width: 4em;
+      margin: 0 auto; }
 @keyframes reveal-sm-content {
   0% {
     opacity: 0;
@@ -190,8 +190,8 @@ body {
   .app-window.app-closed {
     animation: app-opening 0.2s; }
   .app-window.maximized {
-    height: auto;
-    width: auto;
+    height: auto !important;
+    width: auto !important;
     top: 0;
     bottom: 0;
     left: 0;
@@ -216,7 +216,8 @@ body {
     transition: all 0.2s ease-out; }
     .app-window .title-bar-button.red {
       font-size: 2em;
-      width: 1.5em; }
+      width: 1.5em;
+      line-height: 0.8em; }
       .app-window .title-bar-button.red:hover {
         color: white;
         background: red; }
@@ -278,16 +279,6 @@ body {
   0% {
     opacity: 0;
     transform: translateY(50%) scale(0.8); } }
-  @media screen and (max-width: 700px) {
-    .app-window {
-      height: auto;
-      width: auto;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      transition: all 0.2s ease; } }
-
 #settings-app {
   border: 1px solid dodgerblue;
   box-sizing: border-box; }

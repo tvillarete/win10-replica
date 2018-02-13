@@ -19,8 +19,8 @@
     }
     
     &.maximized {
-        height: auto;
-        width: auto;
+        height: auto !important;
+        width: auto !important;
         top: 0;
         bottom: 0;
         left: 0;
@@ -53,6 +53,7 @@
         &.red {
             font-size: 2em;
             width: 1.5em;
+            line-height: 0.8em;
             
             &:hover {
                 color: white;
@@ -165,15 +166,5 @@
             opacity: 0;
             transform: translateY(50%) scale(0.8);
         }
-    }
-    
-    @media screen and (max-width: 700px) {
-        height: auto;
-        width: auto;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        transition: all $duration ease;
     }
 }

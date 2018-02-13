@@ -45,29 +45,10 @@ var AppManager = {
             
         });
     },
-}
-
-var SnappingGuide = {
-    showMax: () => {
-        $('#snapping-guide').addClass('snap-max');
-    },
     
-    showLeft: () => {
-        $('#snapping-guide').addClass('snap-left');
-    },
-    
-    showRight: () => {
-        $('#snapping-guide').addClass('snap-right');
-    },
-    
-    hide: () => {
-        if ($('#snapping-guide').hasClass('snap-max')) {
-            $('#snapping-guide').addClass('snap-closing');
-        }
-        window.setTimeout(function() {
-            $('#snapping-guide').removeClass('snap-max');
-            $('#snapping-guide').removeClass('snap-closing');
-        }, 130);
+    addResizability: (id) => {
+        var app = $(`#${id}`);
+        app.resizable();
     }
 }
 
@@ -81,7 +62,8 @@ var Apps = {
         },
 
         init: () => {
-            $('#desktop').append(Apps.StartMenu.element())
+            $('#desktop').append(Apps.StartMenu.element());
+            Apps.StartMenu.getSize();
         },
 
         element: () => {
@@ -127,16 +109,23 @@ var Apps = {
 
         toggle: () => {
             $('#start-menu').toggleClass('closed');
+            Apps.StartMenu.getSize();
             Apps.Cortana.close();
         },
 
         open: () => {
             $('#start-menu').removeClass('closed');
+            Apps.StartMenu.getSize();
             Cortana.close();
         }, 
 
         close: () => {
             $('#start-menu').addClass('closed');
+            Apps.StartMenu.getSize();
+        },
+        
+        getSize: () => {
+            DesktopManager.getWindowDimensions(Apps.StartMenu, 800, 500);
         }
     },
 
@@ -150,7 +139,8 @@ var Apps = {
         },
 
         init: () => {
-            $('#desktop').append(Apps.Cortana.element())
+            $('#desktop').append(Apps.Cortana.element());
+            Apps.Cortana.getSize();
         },
 
         element: () => {
@@ -162,17 +152,23 @@ var Apps = {
         },
 
         toggle: () => {
+            Apps.Cortana.getSize();
             $('#cortana').toggleClass('closed');
             Apps.StartMenu.close();
         },
 
         open: () => {
+            Apps.Cortana.getSize();
             $('#cortana').removeClass('closed');
             Apps.StartMenu.close();
         }, 
 
         close: () => {
             $('#cortana').addClass('closed');
+        },
+        
+        getSize: () => {
+            DesktopManager.getWindowDimensions(Apps.Cortana, 300, 500);
         }
     },
 
@@ -188,9 +184,13 @@ var Apps = {
 
         init: () => {
             var element = Apps.Settings.element();
-            TaskManager.init(Apps.Settings.options, element);
+            var options = Apps.Settings.options;
+            
+            TaskManager.init(Apps.Settings, element);
+            DesktopManager.getWindowDimensions(Apps.Settings, 800, 800);
             AppManager.hideLoadingScreen(Apps.Settings.options.id);
             AppManager.addWindowDrag(Apps.Settings.options.id);
+            AppManager.addResizability(Apps.Settings.options.id);
         },
 
         element: () => {
@@ -256,8 +256,12 @@ var Apps = {
 
         init: () => {
             var element = Apps.Explorer.element();
-            TaskManager.init(Apps.Explorer.options, element);
+            var options = Apps.Explorer.options;
+            
+            TaskManager.init(Apps.Explorer, element);
+            DesktopManager.getWindowDimensions(Apps.Explorer, 800, 600);
             AppManager.addWindowDrag(Apps.Explorer.options.id);
+            AppManager.addResizability(Apps.Explorer.options.id);
         },
 
         element: () => {
@@ -280,8 +284,10 @@ var Apps = {
 
         init: () => {
             var element = Apps.SpotiFree.element();
-            TaskManager.init(Apps.SpotiFree.options, element);
+            TaskManager.init(Apps.SpotiFree, element);
+            DesktopManager.getWindowDimensions(Apps.SpotiFree, 800, 800);
             AppManager.addWindowDrag(Apps.SpotiFree.options.id);
+            AppManager.addResizability(Apps.SpotiFree.options.id);
         },
 
         element: () => {

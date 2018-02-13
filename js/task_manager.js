@@ -1,19 +1,25 @@
 var TaskManager = {
     duration: 190,
+    activeApps: [],
     
-    init: (options, element) => {
-        var appId = options.id;
-        var app = $(`#${appId}`);
-        var taskbarButton = $(`#${appId}-tb`);
+    init: (app, element) => {
+        var options = app.options;
+        var windowId = options.id;
+        var windowEl = $(`#${windowId}`);
+        var taskbarButton = $(`#${windowId}-tb`);
         
-        app.removeClass('app-closed');  
-        if (!app.length) {
+        windowEl.removeClass('app-closed');  
+        if (!windowEl.length) {
             $('#desktop').append(element);
             taskbarButton.addClass('tb-active');
-        } else if (app.hasClass('minimizing')) {
-            TaskManager.deMinimize(appId);
+            TaskManager.activeApps.push({
+                id: options.id, 
+                app: app,
+            });
+        } else if (windowEl.hasClass('minimizing')) {
+            TaskManager.deMinimize(windowId);
         } else {
-            TaskManager.minimize(appId);
+            TaskManager.minimize(windowId);
         }
     },
     
@@ -25,6 +31,7 @@ var TaskManager = {
         window.setTimeout(function() {
             taskbarButton.removeClass('tb-active');
             app.remove(); 
+            TaskManager.removeFromActiveApps(id);
         }, TaskManager.duration);
     },
     
@@ -53,5 +60,13 @@ var TaskManager = {
         app.css({'top': 0, 'left': 0});
         
         app.removeClass('open-from-minimized').toggleClass('maximized');
+    },
+    
+    removeFromActiveApps: id => {
+        $.each(TaskManager.activeApps, function(index, contents) {
+            if (contents.id == id) {
+                TaskManager.activeApps.splice(index, 1);
+            }
+        });
     },
 }
