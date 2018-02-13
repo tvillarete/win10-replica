@@ -189,6 +189,23 @@ body {
     animation: app-opening-from-minimized 0.2s; }
   .app-window.app-closed {
     animation: app-opening 0.2s; }
+  .app-window.show-back-button .title-bar {
+    padding-left: 0; }
+  .app-window.show-back-button .back-button {
+    display: flex;
+    justify-content: center; }
+  .app-window .back-button {
+    animation: app-opening 0.5s;
+    background: dodgerblue;
+    width: 3em;
+    cursor: default;
+    display: none; }
+    .app-window .back-button:hover {
+      filter: brightness(110%); }
+    .app-window .back-button img {
+      filter: invert(1);
+      max-height: 1em;
+      margin: auto; }
   .app-window.maximized {
     height: auto !important;
     width: auto !important;
@@ -204,7 +221,11 @@ body {
     justify-content: space-between;
     height: 2em;
     line-height: 2em;
-    padding-left: 0.5em; }
+    cursor: default; }
+  .app-window .title-bar-left {
+    display: flex; }
+  .app-window .window-title {
+    margin-left: 0.5em; }
   .app-window .title-bar-controls {
     display: flex;
     height: 100%; }
@@ -256,6 +277,14 @@ body {
     animation: app-closing 0.2s; }
   .app-window.minimizing {
     animation: app-minimizing 0.2s; }
+  .app-window .back-screen-current {
+    animation: back-animation-current 0.2s; }
+  .app-window .back-screen-prev {
+    animation: back-animation-prev-screen 0.2s; }
+  .app-window .forward-screen-current {
+    animation: forward-animation-current 0.2s; }
+  .app-window .forward-screen-next {
+    animation: forward-animation-next-screen 0.2s; }
 @keyframes scale-app-contents {
   0% {
     opacity: 0;
@@ -279,6 +308,22 @@ body {
   0% {
     opacity: 0;
     transform: translateY(50%) scale(0.8); } }
+@keyframes back-animation-current {
+  100% {
+    opacity: 0;
+    transform: scale(0.9); } }
+@keyframes back-animation-prev-screen {
+  0% {
+    opacity: 0;
+    transform: scale(1.1); } }
+@keyframes forward-animation-current {
+  100% {
+    opacity: 0;
+    transform: scale(1.1); } }
+@keyframes forward-animation-next-screen {
+  0% {
+    opacity: 0;
+    transform: scale(0.9); } }
 #settings-app {
   border: 1px solid dodgerblue;
   box-sizing: border-box; }

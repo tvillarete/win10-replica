@@ -172,7 +172,9 @@ var Apps = {
         }
     },
 
-    Settings: {    
+    Settings: {  
+        windowStack: [],
+        
         options: {
             id: 'settings-app',
             title: 'Settings',
@@ -213,7 +215,7 @@ var Apps = {
             `;
             var mainScreenButton = (id, title, text) => {
                 return `
-                    <div class="main-screen-button hover-effect noselectr">
+                    <div class="main-screen-button hover-effect noselectr" onclick="WindowNav.changeScreen('Settings', '${id}')">
                         <div class="button-icon ${id}"></div>
                         <h3 class="button-title">${title}</h3>
                         <h3 class="button-subtitle">${text}</h3>
@@ -237,11 +239,18 @@ var Apps = {
                         ${mainScreenButton('cortana-settings', 'Cortana', 'Cortana language, permissions, notifications')}
                         ${mainScreenButton('privacy-settings', 'Privacy', 'Location, camera')}
                         ${mainScreenButton('update-settings', 'Update & Security', 'Windows Update, recovery, backup')}
-                       
                     </div>
                 </div>
             `;  
         },
+        
+        personalize: () => {
+            return `
+                <div class="window-content-container">
+                    <h1>Personalization</h1>
+                </div>
+            `;
+        }
     },
 
     Explorer: {    

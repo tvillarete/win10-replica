@@ -86,7 +86,12 @@ var AppWindow = {
     titleBar: (options) => {
         return `
             <div class="title-bar">
-                ${options.title}
+                <div class="title-bar-left">
+                    <div class="back-button" onclick="WindowNav.goBack(this)">
+                        <img src="files/images/icons/back-arrow.svg">
+                    </div>
+                    <div class="window-title">${options.title}</div>
+                </div>
                 ${AppWindow.controls(options)}
             </div>
         `;

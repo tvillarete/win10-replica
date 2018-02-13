@@ -18,6 +18,35 @@
         animation: app-opening $duration;
     }
     
+    &.show-back-button {
+        .title-bar {
+            padding-left: 0;
+        }
+        
+        .back-button {
+            display: flex;
+            justify-content: center;
+        }
+    }
+    
+    .back-button {
+        animation: app-opening 0.5s;
+        background: dodgerblue;
+        width: 3em;
+        cursor: default;
+        display: none;
+        
+        &:hover {
+            filter: brightness(110%);
+        }
+        
+        img {
+            filter: invert(1);
+            max-height: 1em;
+            margin: auto;
+        }
+    }
+    
     &.maximized {
         height: auto !important;
         width: auto !important;
@@ -35,7 +64,15 @@
         justify-content: space-between;
         height: 2em;
         line-height: 2em;
-        padding-left: 0.5em;
+        cursor: default;
+    }
+    
+    .title-bar-left {
+        display: flex;
+    }
+    
+    .window-title {
+        margin-left: 0.5em;
     }
     
     .title-bar-controls {
@@ -127,6 +164,22 @@
         animation: app-minimizing $duration;
     }
     
+    .back-screen-current {
+        animation: back-animation-current $duration;
+    }
+    
+    .back-screen-prev {
+        animation: back-animation-prev-screen $duration;
+    }
+    
+    .forward-screen-current {
+        animation: forward-animation-current $duration;
+    }
+    
+    .forward-screen-next {
+        animation: forward-animation-next-screen $duration;
+    }
+    
     @keyframes scale-app-contents {
         0% {
             opacity: 0;
@@ -165,6 +218,34 @@
         0% {
             opacity: 0;
             transform: translateY(50%) scale(0.8);
+        }
+    }
+    
+    @keyframes back-animation-current {
+        100% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+    }
+    
+    @keyframes back-animation-prev-screen {
+        0% {
+            opacity: 0;
+            transform: scale(1.1);
+        }
+    }
+    
+    @keyframes forward-animation-current {
+        100% {
+            opacity: 0;
+            transform: scale(1.1);
+        }
+    }
+    
+    @keyframes forward-animation-next-screen {
+        0% {
+            opacity: 0;
+            transform: scale(0.9);
         }
     }
 }

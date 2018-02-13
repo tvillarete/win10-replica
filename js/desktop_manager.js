@@ -6,7 +6,16 @@ var DesktopManager = {
         Apps.Cortana.init();
         $(window).resize(function() {
             DesktopManager.resizeActiveWindows();
+            Apps.StartMenu.getSize();
+            Apps.Cortana.getSize();
         });
+//        $('#desktop-shortcuts').selectable({
+//            start: function() {
+//                Apps.StartMenu.close();
+//                Apps.Cortana.close();
+//            }
+//            
+//        });
     },
     
     getWindowDimensions: (app, maxWidth, maxHeight) => {
